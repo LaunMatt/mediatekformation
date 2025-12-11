@@ -65,6 +65,9 @@ class PlaylistsController extends AbstractController {
             case "name":
                 $playlists = $this->playlistRepository->findAllOrderByName($ordre);
                 break;
+            case "nb_formations":
+                $playlists = $this->playlistRepository->findAllOrderByNbFormations($ordre);
+                break;
             default:
                 return $this->redirectToRoute('playlists');
         }
