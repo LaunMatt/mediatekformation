@@ -1,0 +1,29 @@
+{{ form_start(formformation) }}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-auto">
+                    {{ form_row (formformation.title) }}
+                </div>
+                <div class="col-auto">
+                    {{ form_row (formformation.publishedAt) }}
+                </div>
+            </div>
+            {{ form_row (formformation.playlist) }}
+            {{ form_row (formformation.categories) }}
+            {{ form_row (formformation.description) }}
+            {{ form_row (formformation.videoId) }}
+        </div>
+        <div class="col">
+            <!-- emplacement image -->
+            <div>
+                <label>Image de la formation</label>
+                {% if formation.videoId %}
+                    <img src="{{ formation.picture }}" alt="Image de la formation"
+                         class="card-img-top" style="width:100%;height:auto;">
+                {% else %}
+                    <p>(aucune image)</p>
+                {% endif %}
+            </div>
+        </div>
+{{ form_end(formformation) }}
