@@ -1,0 +1,29 @@
+{{ form_start(formplaylist) }}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-auto">
+                    {{ form_row (formplaylist.name) }}
+                </div>
+            </div>
+            {{ form_row (formplaylist.description) }}
+        </div>
+        <div class="col">
+            <!-- emplacement image -->
+            <div>
+                <label>Formations de la playlist</label>
+                <!-- boucle sur l'affichage des formations -->
+                {% for formation in playlist.formations %}
+                    <div class="row mt-1">
+                        <div class="col-md-auto">
+                            {% if formation.miniature %}
+                                <img src="{{ formation.miniature }}" alt="Image représentant la miniature de la formation {{ formation.title }}">
+                            {% endif %}  
+                        </div>
+                    </div>
+                {% else %}
+                    <p>(aucune formation)</p>
+                {% endfor %}
+            </div>
+        </div>
+{{ form_end(formplaylist) }}
