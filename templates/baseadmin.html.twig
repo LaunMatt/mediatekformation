@@ -9,7 +9,7 @@
             <img src="{{ app.request.getBasePath()~'/banniere.jpg' }}" alt="Image représentant la bannière du site mediatekformation">
         </div>
         <div class="text-center">
-            <h1>Gestion des formations et playlists</h1>
+            <h1>Gestion des formations, playlists et catégories</h1>
         </div>
         <!-- menu -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,6 +20,9 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{{ path('admin.playlists') }}">Playlists</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin.categories') }}">Catégories</a>
                   </li>
                 </ul>
             </div>

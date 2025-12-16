@@ -1,0 +1,53 @@
+{% extends "baseadmin.html.twig" %}
+
+{% block body %}
+    
+    {% for type, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ type }} alert-dismissible fade show mt-3" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    
+    <form class="form-inline mt-1" method="POST" action="{{ path('admin.categorie.ajout') }}">
+        <div class="form-group mr-1 mb-2">
+            <input type="text" class="sm" name="nom">
+            <button type="submit" class="btn btn-primary mb-2 btn-sm">Ajouter</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <caption class="visually-hidden">
+            Affichage des différentes informations de la page de gestion des catégories du site
+        </caption>
+        <thead>
+            <tr>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+                <tr>
+                    <td>
+                        {{ categorie.name }}
+                    </td>
+                    <td>
+                        {% if categorie.formations|length > 0 %}
+                            <span title="Veuillez vérifier que la catégorie n'est rattachée à aucune formation pour pouvoir la supprimer.">
+                                <button class="btn btn-danger" disabled>Supprimer</button>
+                            <span>
+                        {% else %}
+                            <a href="{{ path('admin.categorie.suppr', {id:categorie.id}) }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de vouloir supprimer {{ categorie.name }} ?');">Supprimer</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

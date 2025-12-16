@@ -42,6 +42,10 @@ class CategorieRepository extends ServiceEntityRepository
                 ->orderBy('c.name', 'ASC')   
                 ->getQuery()
                 ->getResult();        
-    }  
+    }
+    
+    public function findOneByName(string $name): ?Categorie{
+        return $this->findOneBy(['name' => $name]);
+    }
     
 }
