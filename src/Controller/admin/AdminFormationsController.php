@@ -25,6 +25,25 @@ class AdminFormationsController extends AbstractController {
     
     const PAGEGESTIONFORMATIONS = "admin/admin.formations.html.twig";
     
+    /**
+     * @var FormationRepository
+     */
+    private $formationRepository;
+    
+    /**
+     * 
+     * @var CategorieRepository
+     */
+    private $categorieRepository;
+    
+    /**
+     * @param FormationRepository $formationRepository
+     */
+    public function __construct(FormationRepository $formationRepository, CategorieRepository $categorieRepository) {
+        $this->formationRepository = $formationRepository;
+        $this->categorieRepository= $categorieRepository;
+    }
+    
     #[Route('/admin', name: 'admin.formations')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();
@@ -98,24 +117,4 @@ class AdminFormationsController extends AbstractController {
             'table' => $table
         ]);
     }
-    
-    /**
-     * @var FormationRepository
-     */
-    private $formationRepository;
-    
-    /**
-     * 
-     * @var CategorieRepository
-     */
-    private $categorieRepository;
-    
-    /**
-     * @param FormationRepository $formationRepository
-     */
-    public function __construct(FormationRepository $formationRepository, CategorieRepository $categorieRepository) {
-        $this->formationRepository = $formationRepository;
-        $this->categorieRepository= $categorieRepository;
-    }
-    
 }

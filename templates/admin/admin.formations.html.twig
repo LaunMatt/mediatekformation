@@ -67,19 +67,19 @@
             {% for formation in formations %}
                 <tr class="align-middle">
                     <td>
-                        <h5 class="text-info">
+                        <h5 class="text-info formation-titre">
                             {{ formation.title }}
                         </h5>
                     </td>
-                    <td class="text-left">
+                    <td class="text-left playlist-nom">
                         {{ formation.playlist.name }}                  
                     </td>                    
-                    <td class="text-left">
+                    <td class="text-left categories">
                         {% for categorie in formation.categories %}
                             {{ categorie.name }}<br />
                         {% endfor %}
                     </td>                    
-                    <td class="text-center">
+                    <td class="text-center date">
                         {{ formation.publishedatstring }}
                     </td>
                     <td>

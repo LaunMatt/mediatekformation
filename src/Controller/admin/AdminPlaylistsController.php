@@ -26,6 +26,22 @@ class AdminPlaylistsController extends AbstractController {
     
     const PAGEGESTIONPLAYLISTS = "admin/admin.playlists.html.twig";
     
+    /**
+     * @var FormationRepository
+     */
+    private $playlistRepository;
+    
+    /**
+     * 
+     * @var CategorieRepository
+     */
+    private $categorieRepository;
+    
+    /**
+     * @var FormationRepository
+     */
+    private $formationRepository;
+    
     function __construct(PlaylistRepository $playlistRepository, 
             CategorieRepository $categorieRepository,
             FormationRepository $formationRespository) {

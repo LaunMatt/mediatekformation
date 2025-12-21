@@ -53,11 +53,11 @@
                 {% for k in 0..playlists|length-1 %}
                     <tr class="align-middle">
                         <td>
-                            <h5 class="text-info">
+                            <h5 class="text-info playlist-nom">
                                 {{ playlists[k].name }}
                             </h5>
                         </td>                 
-                        <td class="text-left">
+                        <td class="text-left categories">
                             {% set categories = playlists[k].categoriesplaylist %}
                             {% if categories|length > 0  %}
                                 {% for c in 0..categories|length-1 %}
@@ -65,7 +65,7 @@
                                 {% endfor %}
                             {% endif %}
                         </td>
-                        <td class="text-center">
+                        <td class="text-center formation-nombre">
                             {{ playlists[k].formations|length }}
                         </td>     
                         <td class="text-center">
