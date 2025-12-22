@@ -15,14 +15,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Description of AdminCategorieController
- *
- * @author mattl
+ * Contrôleur des catégories (côté back office)
  */
 class AdminCategorieController extends AbstractController {
     
+    /**
+     * @var categorieRepository
+     */
+    private $categorieRepository;
+    
     const PAGEGESTIONCATEGORIES = "admin/admin.categories.html.twig";
     
+    /**
+     * Constructeur
+     * 
+     * @param CategorieRepository $categorieRepository
+     */
+    public function __construct(CategorieRepository $categorieRepository) {
+        $this->categorieRepository = $categorieRepository;
+    }
+    
+    /**
+     * Route d'affichage de la page listant les catégories (côté back office)
+     * 
+     * @return Response
+     */
     #[Route('/admin/categories', name: 'admin.categories')]
     public function index(): Response{
         $categories = $this->categorieRepository->findAll();
@@ -31,6 +48,12 @@ class AdminCategorieController extends AbstractController {
         ]);
     }
     
+    /**
+     * Route permettant la suppresion d'une catégorie
+     * 
+     * @param int $id
+     * @return Response
+     */
     #[Route('/admin/categorie/suppr/{id}', name: 'admin.categorie.suppr')]
     public function suppr(int $id): Response{
         $categorie = $this->categorieRepository->find($id);
@@ -43,6 +66,12 @@ class AdminCategorieController extends AbstractController {
         }
     }
     
+    /**
+     * Route permettant l'ajout d'une catégorie
+     * 
+     * @param Request $request
+     * @return Response
+     */
     #[Route('/admin/categorie/ajout', name: 'admin.categorie.ajout')]
         public function ajout (Request $request) : Response{
         $nomCategorie = $request->get("nom");
@@ -62,17 +91,5 @@ class AdminCategorieController extends AbstractController {
         $categorie->setName($nomCategorie);
         $this->categorieRepository->add($categorie);
         return $this->redirectToRoute('admin.categories');
-    }
-    
-    /**
-     * @var categorieRepository
-     */
-    private $categorieRepository;
-    
-    /**
-     * @param CategorieRepository $categorieRepository
-     */
-    public function __construct(CategorieRepository $categorieRepository) {
-        $this->categorieRepository = $categorieRepository;
     }
 }

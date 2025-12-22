@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Description of AccueilController
+ * Contrôleur de la page d'accueil
  *
  * @author emds
  */
@@ -19,6 +19,7 @@ class AccueilController extends AbstractController{
     private $repository;
     
     /**
+     * Constructeur
      * 
      * @param FormationRepository $repository
      */
@@ -26,6 +27,11 @@ class AccueilController extends AbstractController{
         $this->repository = $repository;
     }   
     
+    /**
+     * Route d'affichage de la page d'accueil
+     * 
+     * @return Response
+     */
     #[Route('/', name: 'accueil')]
     public function index(): Response{
         $formations = $this->repository->findAllLasted(2);
@@ -34,6 +40,11 @@ class AccueilController extends AbstractController{
         ]); 
     }
     
+    /**
+     * Route d'affichage de la page des conditions générales d'utilisation
+     * 
+     * @return Response
+     */
     #[Route('/cgu', name: 'cgu')]
     public function cgu(): Response{
         return $this->render("pages/cgu.html.twig"); 

@@ -9,20 +9,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Controleur des formations
+ * Contrôleur des formations (côté front office)
  *
  * @author emds
  */
 class FormationsController extends AbstractController {
 
     /**
-     * 
      * @var FormationRepository
      */
     private $formationRepository;
     
     /**
-     * 
      * @var CategorieRepository
      */
     private $categorieRepository;
@@ -30,11 +28,22 @@ class FormationsController extends AbstractController {
     const PAGEFORMATIONS = "pages/formations.html.twig";
     const PAGEFORMATION = "pages/formation.html.twig";
     
+    /**
+     * Constructeur
+     * 
+     * @param FormationRepository $formationRepository
+     * @param CategorieRepository $categorieRepository
+     */
     function __construct(FormationRepository $formationRepository, CategorieRepository $categorieRepository) {
         $this->formationRepository = $formationRepository;
         $this->categorieRepository= $categorieRepository;
     }
     
+    /**
+     * Route d'affichage de la page listant les formations (côté front office)
+     * 
+     * @return Response
+     */
     #[Route('/formations', name: 'formations')]
     public function index(): Response{
         $formations = $this->formationRepository->findAll();
@@ -45,6 +54,14 @@ class FormationsController extends AbstractController {
         ]);
     }
 
+    /**
+     * Route permettant l'affichage de la liste des formations selon un tri effectué (côté front office)
+     * 
+     * @param type $champ
+     * @param type $ordre
+     * @param type $table
+     * @return Response
+     */
     #[Route('/formations/tri/{champ}/{ordre}/{table}', name: 'formations.sort')]
     public function sort($champ, $ordre, $table=""): Response{
         $formations = $this->formationRepository->findAllOrderBy($champ, $ordre, $table);
@@ -55,6 +72,14 @@ class FormationsController extends AbstractController {
         ]);
     }     
 
+    /**
+     * Route permettant l'affichage de la liste des formations selon un filtre effectué (côté front office)
+     * 
+     * @param type $champ
+     * @param Request $request
+     * @param type $table
+     * @return Response
+     */
     #[Route('/formations/recherche/{champ}/{table}', name: 'formations.findallcontain')]
     public function findAllContain($champ, Request $request, $table=""): Response{
         $valeur = $request->get("recherche");
@@ -68,6 +93,12 @@ class FormationsController extends AbstractController {
         ]);
     }  
 
+    /**
+     * Route permettant l'affichage de la page d'une formation présente dans la liste des formations (côté front office)
+     * 
+     * @param type $id
+     * @return Response
+     */
     #[Route('/formations/formation/{id}', name: 'formations.showone')]
     public function showOne($id): Response{
         $formation = $this->formationRepository->find($id);
@@ -75,5 +106,4 @@ class FormationsController extends AbstractController {
             'formation' => $formation
         ]);        
     }   
-    
 }

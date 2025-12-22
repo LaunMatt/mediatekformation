@@ -7,21 +7,40 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository de l'entité Categorie
+ * 
  * @extends ServiceEntityRepository<Categorie>
  */
 class CategorieRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructeur
+     * 
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Categorie::class);
     }
 
+    /**
+     * Méthode permettant d'ajouter une catégorie à la base de données
+     * 
+     * @param Categorie $entity
+     * @return void
+     */
     public function add(Categorie $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Méthode permettant de supprimer une catégorie de la base de données
+     * 
+     * @param Categorie $entity
+     * @return void
+     */
     public function remove(Categorie $entity): void
     {
         $this->getEntityManager()->remove($entity);
@@ -29,7 +48,8 @@ class CategorieRepository extends ServiceEntityRepository
     }
     
     /**
-     * Retourne la liste des catégories des formations d'une playlist
+     * Méthode retournant la liste des catégories des formations d'une playlist
+     * 
      * @param type $idPlaylist
      * @return array
      */
@@ -44,8 +64,13 @@ class CategorieRepository extends ServiceEntityRepository
                 ->getResult();        
     }
     
+    /**
+     * Méthode permettant de vérifier si un nom de catégorie existe déjà
+     * 
+     * @param string $name
+     * @return Categorie|null
+     */
     public function findOneByName(string $name): ?Categorie{
         return $this->findOneBy(['name' => $name]);
     }
-    
 }

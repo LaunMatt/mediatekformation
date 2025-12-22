@@ -20,8 +20,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Classe permettant la création du formulaire d'ajout / de modification d'une formation
+ */
 class FormationType extends AbstractType
 {
+    /**
+     * Méthode permettant la création du formulaire avec les données à afficher
+     * 
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -60,6 +70,12 @@ class FormationType extends AbstractType
             ]);
     }
 
+    /**
+     * Méthode permettant de configurer les options du formulaire
+     * 
+     * @param OptionsResolver $resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

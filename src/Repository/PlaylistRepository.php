@@ -7,21 +7,40 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository de l'entité Playlist
+ * 
  * @extends ServiceEntityRepository<Playlist>
  */
 class PlaylistRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructeur
+     * 
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Playlist::class);
     }
 
+    /**
+     * Méthode permettant d'ajouter une playlist à la base de données
+     * 
+     * @param Playlist $entity
+     * @return void
+     */
     public function add(Playlist $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Méthode permettant de supprimer une playlist de la base de données
+     * 
+     * @param Playlist $entity
+     * @return void
+     */
     public function remove(Playlist $entity): void
     {
         $this->getEntityManager()->remove($entity);
@@ -29,8 +48,8 @@ class PlaylistRepository extends ServiceEntityRepository
     }
     
     /**
-     * Retourne toutes les playlists triées sur le nom de la playlist
-     * @param type $champ
+     * Méthode retournant toutes les playlists triées sur le nom de la playlist
+     * 
      * @param type $ordre
      * @return Playlist[]
      */
@@ -44,8 +63,8 @@ class PlaylistRepository extends ServiceEntityRepository
     }
     
     /**
-     * Retourne toutes les playlists triées sur le nombre de formations de la playlist
-     * @param type $champ
+     * Méthode retournant toutes les playlists triées sur le nombre de formations de la playlist
+     * 
      * @param type $ordre
      * @return Playlist[]
      */
@@ -60,8 +79,9 @@ class PlaylistRepository extends ServiceEntityRepository
     }
 	
     /**
-     * Enregistrements dont un champ contient une valeur
+     * Méthode retournant les enregistrements dont un champ contient une valeur
      * ou tous les enregistrements si la valeur est vide
+     * 
      * @param type $champ
      * @param type $valeur
      * @param type $table si $champ dans une autre table
@@ -92,5 +112,4 @@ class PlaylistRepository extends ServiceEntityRepository
                     ->getResult();              
         }           
     }    
-    
 }

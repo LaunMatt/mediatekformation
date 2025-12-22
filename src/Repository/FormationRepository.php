@@ -7,21 +7,40 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository de l'entité Formation
+ * 
  * @extends ServiceEntityRepository<Formation>
  */
 class FormationRepository extends ServiceEntityRepository
 {
+    /**
+     * Constructeur
+     * 
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Formation::class);
     }
 
+    /**
+     * Méthode permettant d'ajouter une formation à la base de données
+     * 
+     * @param Formation $entity
+     * @return void
+     */
     public function add(Formation $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Méthode permettant de supprimer une formation de la base de données
+     * 
+     * @param Formation $entity
+     * @return void
+     */
     public function remove(Formation $entity): void
     {
         $this->getEntityManager()->remove($entity);
@@ -29,7 +48,8 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retourne toutes les formations triées sur un champ
+     * Méthode retournant toutes les formations triées sur un champ
+     * 
      * @param type $champ
      * @param type $ordre
      * @param type $table si $champ dans une autre table
@@ -51,8 +71,9 @@ class FormationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Enregistrements dont un champ contient une valeur
+     * Méthode retournant les enregistrements dont un champ contient une valeur
      * ou tous les enregistrements si la valeur est vide
+     * 
      * @param type $champ
      * @param type $valeur
      * @param type $table si $champ dans une autre table
@@ -81,7 +102,8 @@ class FormationRepository extends ServiceEntityRepository
     }    
     
     /**
-     * Retourne les n formations les plus récentes
+     * Méthode retournant les n formations les plus récentes
+     * 
      * @param type $nb
      * @return Formation[]
      */
@@ -94,7 +116,8 @@ class FormationRepository extends ServiceEntityRepository
     }    
     
     /**
-     * Retourne la liste des formations d'une playlist
+     * Méthode retournant la liste des formations d'une playlist
+     * 
      * @param type $idPlaylist
      * @return array
      */
@@ -107,5 +130,4 @@ class FormationRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();        
     }
-    
 }
