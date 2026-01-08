@@ -101,8 +101,12 @@ La partie centrale de la page contient un premier champ permettant de saisir le 
 - Télécharger le code de l'application en dossier "zip" et le dézipper dans le dossier dédié à contenir les projets d’application du serveur local (pour Wampserver, il s’agit du dossier "www" du dossier "wamp64") puis renommer le dossier en "mediatekformation".<br>
 ![9](https://github.com/user-attachments/assets/94c64519-7bd7-4a62-a9e9-88d96bf29670)<br>
 - Ouvrir une fenêtre de commandes en mode administrateur, se positionner dans le dossier du projet et taper la commande "composer install" pour reconstituer le dossier vendor.<br>
-- Dans l’IDE (comme Netbeans par exemple), cliquer sur l'onglet "File", puis "Open Project" et ouvrir le dossier du projet.<br>
-![10](https://github.com/user-attachments/assets/56324f3d-1a6f-4442-9cd2-9157fc9f6157)<br>
+- Dans l’IDE (comme Netbeans par exemple), cliquer sur l'onglet "File", puis "New Project".<br>
+![10](https://github.com/user-attachments/assets/d633864c-b69f-46df-94d4-4b7db1fd8a09)<br>
+- Dans la fenêtre qui s'affiche, sélectionner comme catégorie "PHP" et comme type de projet "PHP Application".<br>
+![11](https://github.com/user-attachments/assets/55fbf3a2-7641-4760-b098-3358099401f9)<br>
+- Dans la fenêtre suivante, saisir le nom du projet "mediatekformation" dans "Project Name", sélectionner le dossier du projet dans "Sources Folder" à l'aide du bouton "Browse" et indiquer la bonne version de PHP dans "PHP Version" (la même version de PHP que celle du serveur utilisé).<br>
+- Cliquer ensuite sur le bouton "Next" jusqu'à atteindre la dernière fenêtre et cliquer sur le bouton "Finish".<br>
 - Démarrer le serveur local utilisé (comme Wampserver par exemple) et se rendre dans PHPMyAdmin, se connecter à MySQL et créer la base de données "mediatekformation".<br>
 - Copier le code SQL du fichier "mediatekformation.sql" présent dans le dossier du projet, le coller dans l’onglet "SQL" de la base de données "mediatekformation" sur PHPMyAdmin et cliquer sur "Exécuter".<br>
 - Si PHPMyAdmin ne renvoie pas d’erreur, il est alors possible d’utiliser l’application en local, en y accédant soit par le biais de l’IDE (bouton d’exécution), soit à l’aide de l’URL http://localhost/mediatekformation/public/index.php
